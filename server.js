@@ -2,6 +2,7 @@
 // =============================================================
 var express = require("express");
 var path = require("path");
+var htmlRoutes = require("./app/routing/htmlRoutes");
 
 // Sets up the Express App
 // =============================================================
@@ -41,10 +42,7 @@ var characters = [
 // Routes
 // =============================================================
 
-// Basic route that sends the user first to the AJAX Page
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "view.html"));
-});
+let temp = htmlRoutes(app, __dirname);
 
 app.get("/add", function(req, res) {
   res.sendFile(path.join(__dirname, "add.html"));
