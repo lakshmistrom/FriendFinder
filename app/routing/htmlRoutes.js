@@ -1,8 +1,18 @@
+// ===============================================================================
+// DEPENDENCIES
+// We need to include the path package to get the correct file path for our html
+// ===============================================================================
 var path = require("path");
-// Basic route that sends the user first to the AJAX Page
-var htmlRoutes = function(app, dirname){
-app.get("/", function(req, res) {console.log(res);
-    res.sendFile(path.join(dirname, "/app/public/home.html"));
-  });
+
+// ===============================================================================
+// ROUTING
+// ===============================================================================
+module.exports = function (app) {
+    // If no matching route is found default to home
+    app.get("/survey", function (req, res) {
+        res.sendFile(path.join(__dirname, "../public/survey.html"));
+    });
+    app.get("*", function (req, res) {
+        res.sendFile(path.join(__dirname, "../public/home.html"));
+    });
 }
-module.exports = htmlRoutes;
